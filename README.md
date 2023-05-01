@@ -59,6 +59,9 @@ Thêm thông tin cho node về các tuỳ biến gas, seed, peer... etc:
     sed -i 's|^pruning-interval *=.*|pruning-interval = "10"|g' $HOME/.dymension/config/app.toml
     sed -i 's|^snapshot-interval *=.*|snapshot-interval = 0|g' $HOME/.dymension/config/app.toml
     sed -i 's|^prometheus *=.*|prometheus = true|' $HOME/.dymension/config/config.toml
+    dymd tendermint unsafe-reset-all --home $HOME/.dymension --keep-addr-book
+    SNAP_NAME=$(curl -s https://snapshots2-testnet.nodejumper.io/dymension-testnet/info.json | jq -r .fileName)
+    curl "https://snapshots2-testnet.nodejumper.io/dymension-testnet/${SNAP_NAME}" | lz4 -dc - | tar -xf - -C "$HOME/.dymension"
  
  5/ Khởi tạo hệ thống:
  
