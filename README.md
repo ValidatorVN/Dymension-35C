@@ -52,6 +52,8 @@ Chuyển thư mục Golang:
     
 Thêm thông tin cho node về các tuỳ biến gas, seed, peer... etc:
 
+    curl -s https://raw.githubusercontent.com/dymensionxyz/testnets/main/dymension-hub/35-C/genesis.json > $HOME/.dymension/config/genesis.json
+    curl -s https://snapshots2-testnet.nodejumper.io/dymension-testnet/addrbook.json > $HOME/.dymension/config/addrbook.json
     sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001udym"|g' $HOME/.dymension/config/app.toml
     sed -i -e 's/external_address = \"\"/external_address = \"'$(curl httpbin.org/ip | jq -r .origin)':26656\"/g' ~/.dymension/config/config.toml
     sed -i 's|^pruning *=.*|pruning = "custom"|g' $HOME/.dymension/config/app.toml
